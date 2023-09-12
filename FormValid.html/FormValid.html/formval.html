@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <title>
+            user identity
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <style>
+            body{
+                font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+                font-size: 150%;
+                font-style: normal;
+                margin-top: 200px;
+                background-color: rgb(203, 167, 236);
+            }
+            .space{
+                width: 550px;
+                margin: 0 auto;
+                background-color: rgb(231, 218, 202);
+                padding: 40px 40px 40px 40px;
+                border-radius: 50px;
+            }
+            label{
+                float: left;
+                position: relative;
+                width:220px;
+                padding-top: 4px;
+            }
+            input{
+                font-size: 25px;
+                width: 300px;
+                border: 2px ridge black;
+                border-radius: 7px;
+                padding:2px 4px 2px 4px;
+            }
+            .jagah{
+                padding-top: 8px;
+
+            }
+            #butt{
+                margin: 12px;
+                background-color: rgb(148, 151, 151);
+                width: 200px;
+                margin-left: 220px;
+            }
+
+            #errors{
+                color: red;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: medium;
+            }
+            #hh{
+                font-size: 100px;
+                padding-left: 390px;
+                color: brown;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+            #success{
+                color: green;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: medium;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1 id="hh">Please Register Yourself</h1>
+        <div class="space">
+            <div class="jagah">
+                <div>
+                    <label for="Email">E-Mail</label>
+                    <input type="text" id="Email" name="Email">
+                </div>
+            </div>
+            <div class="jagah">
+                <div>
+                    <label for="phno">Phone-number</label>
+                    <input type="text" id="phno" name="phno">
+                </div>
+            </div>
+            <div class="jagah">
+                <div>
+                    <label for="Pass">Password</label>
+                    <input type="password" id="pass" name="pass">
+                </div>
+            </div>
+            <div class="jagah">
+                <div>
+                    <label for="conf">Confirm Password</label>
+                    <input type="password" id="conf" name="conf">
+                </div>
+            </div>
+            <input type="submit" id="butt">
+            <div id="errors"></div>
+            <div id="success"></div>
+        </div>
+
+
+
+        <script>
+            var galti = "";
+            var khali = "";
+            function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   return regex.test(email);
+   
+}
+            $("#butt").click(function(){
+                //validation
+                if( isEmail($("#Email").val()) == false){
+                    galti += "<p> this is  an invalid E-Mail </p>";
+                }
+                if($.isNumeric($("#phno").val() ) == false ){
+                    galti+= "<p> Phone Number Should Only be Numeric </p>";
+            
+                }
+                if($("#pass").val() != $("#conf").val()){
+                    galti += "<p> Both Password Doesn't Match </p>";
+                }
+
+
+                // empty check
+                if($("#Email").val()== ""){
+                    khali += "<p> Please Fill Email Before Submitting</p>"
+                }
+                if($("#phno").val()== ""){
+                    khali += "<p> Please Fill Phone -Number Before Submitting</p>"
+                }
+                if($("#pass").val()== ""){
+                    khali += "<p> Please Fill Password Before Submitting</p>"
+                }
+                if($("#conf").val()== ""){
+                    khali += "<p> Please Fill Confirm Password Before Submitting</p>"
+                }
+
+                //print error
+                if((galti && khali) == ""){
+                    $("#success").html("**you are sucessfully Registered");
+                }
+                else{
+                    $("#errors").html(galti + khali);
+                }
+
+
+
+
+                
+
+
+
+            });
+        </script>
+    </body>
+</html>
